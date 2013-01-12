@@ -1,0 +1,9 @@
+<%= form_tag('/myaction',{multipart: true}) %>
+
+<h1> <%= q %> </h1>
+<% for(var i=0; i<a.length; i++) {%>
+   <input type="radio" name="answer" value="<%= a[i] %>"><%= a[i] %><br>
+<% } %>
+<%= submit_tag('Submit') %>
+
+<%= form_tag_end() %>

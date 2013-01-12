@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/ejs_production.js"></script>
+    <script src="/javascripts/view.js"></script>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <p>Welcome to {{ title }}</p>
+  <div id='textbox'></div>
+  <div id='questionarea'></div>
+  <script>
+    //var question = { q: 'What is your favorite color?', a: ['red', 'yellow', 'orange'] };
+    // load a template file, then render it with data
+    //new EJS({url: '/ejs/question.ejs'}).update('questiontext', question);
+
+  </script>
+  <script>
+        var question = { q: 'What is your favorite color?', a: ['red', 'yellow', 'orange'] };
+        var socket = io.connect('http://localhost');
+        var oldData = [];
+
+        socket.on('connect', function(client){
+                // Do some stuff when connected
+        });
+
+        socket.on('question', function (data){
+          // Do some stuff when you get a message
+          //oldData += data.q;
+          //document.getElementById('textbox').innerHTML = oldData;
+          
+          // load a template file, then render it with data
+          new EJS({url: '/ejs/question.ejs'}).update('questionarea', data);
+        }); 
+
+        socket.on('disconnect', function(){
+                // Do some stuff when disconnected
+        }); 
+  </script>
+  </body>
+</html>
